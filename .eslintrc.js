@@ -1,9 +1,16 @@
 module.exports = {
+    
     "env": {
-        "browser": true,
-        "es6": true
+        "node": true, // this is the best starting point
+        "browser": true, // for react web
+        "es6": true // enables es6 features
     },
-    "extends": "eslint:recommended",
+    "parser": "babel-eslint", // needed to make babel stuff work properly
+    "extends": "airbnb",
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -20,8 +27,8 @@ module.exports = {
     ],
     "rules": {
         "react-native/no-unused-styles": 2,
-    "react-native/split-platform-components": 2,
-    "react-native/no-inline-styles": 2,
-    "react-native/no-raw-text": 2,
+        "react-native/split-platform-components": 2,
+        "react-native/no-inline-styles": 2,
+        "react-native/no-raw-text": 2,
     }
 };
