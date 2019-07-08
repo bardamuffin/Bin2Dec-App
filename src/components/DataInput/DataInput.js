@@ -6,7 +6,8 @@ export default class DataInput extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <TextInput style={styles.textInput} value="Enter a number here"></TextInput>
+                <TextInput style={styles.textInput} value="Enter binary"></TextInput>
+                <TextInput style={styles.textInput} value="Enter Dec"></TextInput>
                 <Button style={styles.button} title="Submit" />
             </View>
         );
@@ -15,17 +16,19 @@ export default class DataInput extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 70,
-        marginLeft: 60,
-        flexDirection: "row",
-        justifyContent: "flex-start",
-        alignItems: "center"
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        borderColor: "red",
+        borderWidth: 1,
+        height: "66%"
     },
     textInput: {
-        width: "100%"
-    },
-    button: {
-        marginLeft: 60
+        width: "100%",
+        height: "30%",
+        borderColor: "yellow",
+        borderWidth: 1,
+        alignSelf: "center"
     }
-
 })
+
