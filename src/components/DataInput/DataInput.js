@@ -1,71 +1,53 @@
 import React, { Component } from 'react';
-import { TextInput, View, StyleSheet, Button, Text } from 'react-native';
+import { TextInput, View, StyleSheet } from 'react-native';
+import { Button } from 'react-native-elements';
 
 export default class DataInput extends Component {
     state = {  }
     render() {
         return (
             <View style={styles.container}>
-                <TextInput style={styles.binInput} value=""></TextInput>
-                <View style={styles.textInfo}>
-                    <Text>Binnay</Text>
-                </View>          
-                <TextInput style={styles.decInput} value=""></TextInput>
+                <View style={styles.textInput}>
+                    <TextInput style={styles.text} value="Enter Binary"></TextInput>
+                </View>
+                <View style={styles.textInput}>
+                    <TextInput style={styles.text} value="Enter Dec"></TextInput>
+                </View>
+                <Button buttonStyle={styles.button} title="Reset" />
             </View>
         );
     }
 }
                 
 
+                
+
 const styles = StyleSheet.create({
     container: {
-        display: "flex",
-        borderColor: "red",
-        borderWidth: 1,
-        height: "61.5%",
-        marginTop:"9%",
-        backgroundColor: "black",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "space-evenly",
-        padding: 10
-        
+        marginTop: 30,
+        justifyContent: "space-around",
+        //borderColor: "red",
+        //borderWidth: 1,
+        height: "63%",
+        backgroundColor: "#3a485e"
     },
-    binInput: {
-        borderColor: "purple",
-        borderWidth: 10,
-        backgroundColor: "red",
-        width: "100%",
-        height: "45%",
-        fontSize: 60,
-        padding: 40
-        //marginTop:"20%",
-        //margin: "15%"
-        
-    },
-    decInput: {
-        borderColor: "purple",
-        //borderWidth: 10,
-        backgroundColor: "yellow",
-        width: "100%",
-        height: "45%",
-        justifyContent: "center",
-        fontSize: 60,
-        //padding: 40 ,
-        
-        //margin: "15%"
-
-        
-    },
-    textInfo: {
-        backgroundColor: "green",
-        width: "100%",
-        borderColor: "orange",
-        borderWidth: 10,
-        height: "10%",
-        justifyContent: "center",
+    textInput: {
         flexDirection: "row",
-        
-    }    
-
+        justifyContent: "center",
+        width: "100%",
+        height: "30%",
+        borderColor: "#667996",
+        borderWidth: 1,
+        alignSelf: "center",
+        fontSize: 40
+    },
+    text: {
+        fontSize: 40
+    },
+    button: {
+        backgroundColor: "red"
+    }
 })
+
