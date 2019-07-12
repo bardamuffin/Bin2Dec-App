@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn install
+  /usr/local/bin/node /usr/local/bin/yarn add nodemon
 
 PATH: 
   /home/cap/Android/Sdk/emulator:/home/cap/Android/Sdk/tools:/home/case/tools:/home/case/tools/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/cap/Android/Sdk/tools:/home/cap/Android/Sdk/tools/bin:/home/cap/Android/Sdk/platform-tools
@@ -14,7 +14,7 @@ Platform:
   linux x64
 
 Trace: 
-  Error: EACCES: permission denied, mkdir '/home/cap/Documents/dev/bin2Dec-App/node_modules/error-ex/node_modules'
+  Error: EACCES: permission denied, mkdir '/home/cap/Documents/dev/bin2Dec-App/node_modules/@react-native-community/cli/node_modules/execa'
 
 npm manifest: 
   {

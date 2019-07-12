@@ -5,9 +5,10 @@ import { Button } from 'react-native-elements';
 //https://www.culture-informatique.net/conversion-binaire-decimal-hexadecimal-main/
 //
 export default class DataInput extends Component {
-    state = { binary: '' }
+    state = { binary: '', dec: '' }
+   //TODO: doesn't delete if only one zero or one stay in the input
     handleBinaryChange = (val) => {
-        
+        console.log("\n\nsliced: " + val.slice(-1) + "\n\n");
         let lastChar = val.slice(-1);
         //max length: 8 digit
         //accept only 1 or 0 
@@ -17,40 +18,52 @@ export default class DataInput extends Component {
             })
             console.log("changed: " + val.slice(-1))
         } 
-            
     }
+        
+    //TODO: filter input
+    handleDecimalChange= (val) => {
+        this.setState({
+            dec: val
+        })
+    }
+    
+    //TODO: Manage Decimal Binary
     convertBinToDec = (val) => {
-        //TODO: Convert Binary to Decimal
-        //slice() take two digit, should take only 1
-        console.log("-------------PARSING-------------")
-        let dec = 0;
+        let result = 0;
         let step = 1;
-        for(let i = val.length; i > 0; i--)  {
-            console.log("STEP: " + i)
-            console.log("val vaut: " + val);
-            console.log("val length: " + val.length);
-            console.log("val slice: " + i+ " val: " + val.slice(i - 1))
-            console.log("val slice parse: " + parseInt(val.slice(i - 1),10))
-            console.log("multiplied: " +step)
-            console.log("DEC: " + dec + " + " + parseInt(val.slice(i - 1),10) * step )
-            dec = dec + parseInt(val.slice(i - 1),10) * step;
-            step *= 2;
-            console.log("END STEP: " + i)
+        for( let i = val.length; i > 0; i--) {
+            let numb = val.charAt(i-1);
+            result += Number.parseInt(numb, 10) * step;
+            step *= 2
         }
-        console.log("-------------END-------------")
-        return dec;
+        return result.toString();
     }
-
+    //TODO: Manage Decimal Binary
+    convertDecToBin = (val) => {
+        let result = Number.parseInt(val);
+        let reste = '';
+        while (result > 0) {
+            //if modulo > 0 then we substract 0.5 because its not round
+            reste = String.prototype.concat(result%2, reste);
+            result % 2 > 0 ? result = result / 2 - 0.5 : result = result / 2;
+        }
+        return reste;
+    }
+    
     componentDidUpdate(prevProps, prevState){
         if(prevState.binary != this.state.binary) {
-            console.log("different state---processing ....");
-            console.log("converted: " + this.convertBinToDec(this.state.binary))
+            this.setState({
+                dec: this.convertBinToDec(this.state.binary)
+            })
+        }
+            
+        if(prevState.dec != this.state.dec) {
+            this.setState({
+                binary: this.convertDecToBin(this.state.dec)
+            })
         }
     }
-    convertDecToBin = (val) => {
-        //TODO: convert decimal to binary
-    }
- 
+           
     render() {
         return (
             <View style={styles.container}>
@@ -63,16 +76,20 @@ export default class DataInput extends Component {
                     </TextInput>
                 </View>
                 <View style={styles.textInput}>
-                    <TextInput style={styles.text} value="Enter Dec"></TextInput>
+                    <TextInput 
+                        value="Enter Dec"
+                        style={styles.text}
+                        // eslint-disable-next-line react/jsx-no-duplicate-props
+                        value={this.state.dec}
+                        keyboardType="numeric"
+                        onChangeText={(val) => this.handleDecimalChange(val)}>   
+                    </TextInput>
                 </View>
                 <Button buttonStyle={styles.button} title="Reset" />
             </View>
         );
     }
 }
-                
-
-                
 
 const styles = StyleSheet.create({
     container: {
@@ -102,4 +119,10 @@ const styles = StyleSheet.create({
         backgroundColor: "red"
     }
 })
+    
+ 
+                
+
+                
+
 
